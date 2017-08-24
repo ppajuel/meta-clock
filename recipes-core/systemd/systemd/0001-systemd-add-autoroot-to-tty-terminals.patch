@@ -1,0 +1,26 @@
+From 75da7a54d46fb3d985740d3408c92cbed92a62e1 Mon Sep 17 00:00:00 2001
+From: Pau Pajuelo <ppajuel@gmail.com>
+Date: Thu, 24 Aug 2017 16:46:42 +0200
+Subject: [PATCH] systemd: add autoroot to tty terminals
+
+Signed-off-by: Pau Pajuelo <ppajuel@gmail.com>
+---
+ units/getty@.service.m4 | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/units/getty@.service.m4 b/units/getty@.service.m4
+index 46164ab..bc02ccf 100644
+--- a/units/getty@.service.m4
++++ b/units/getty@.service.m4
+@@ -27,7 +27,7 @@ ConditionPathExists=/dev/tty0
+ 
+ [Service]
+ # the VT is cleared by TTYVTDisallocate
+-ExecStart=-/sbin/agetty --noclear %I $TERM
++ExecStart=-/sbin/agetty -a root --noclear %I $TERM
+ Type=idle
+ Restart=always
+ RestartSec=0
+-- 
+2.7.4
+
